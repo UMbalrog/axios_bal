@@ -78,7 +78,6 @@ instance.interceptors.response.use(
  params[请求时携带的参数]
 */
 function jsonp(config) {
-  // url, params, timeout, cbName
   return new Promise((resolve, reject) => {
     JSONP({
       url: config.url,

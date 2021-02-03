@@ -1,6 +1,3 @@
-// 生命周期
-
-// import axios from "axios";
 import request from "./request.js";
 import {
   warn,
@@ -37,7 +34,6 @@ const AJAX = function(list) {
         config = Object.assign ? Object.assign(config, userconfig) : extend(config, userconfig);
       };
       config.data = query
-      // console.log('请求配置', config);
       return request(config);
     };
   })
@@ -47,7 +43,7 @@ const AJAX = function(list) {
 
 AJAX.install = (Vue) => { 
   // Vue.prototype.$axios = axios;
-  // console.log('wl-axios')
 };
+AJAX.version = '1.0.1';
 
 export default AJAX
