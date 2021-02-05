@@ -7,15 +7,25 @@ import {
   noop
 } from './util.js';
 
-var instance = axios.create({
+const defaltConfig = {
   baseURL: "/",
   timeout: 10000,
   responseType: "json",
   headers: {
     "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
   },
-  withCredentials: true
-});
+  // withCredentials: true
+};
+
+var instance = axios.create(defaltConfig);
+
+export function setConfig(config){
+  if(config.baseURL) instance.defaults.baseURL = config.baseURL;
+  if(config.timeout) instance.defaults.timeout = config.timeout;
+  if(config.responseType) instance.defaults.responseType = config.responseType;
+  if(config.headers) instance.defaults.headers = config.headers;
+  if(config.withCredentials) instance.defaults.withCredentials = config.withCredentials;
+}
 
 // 请求拦截器
 instance.interceptors.request.use(
@@ -97,7 +107,7 @@ function jsonp(config) {
   });
 }
 
-export default function request(config){
+export function request(config){
   
   config.method = config.method.toLowerCase();
   // 请求方式处理

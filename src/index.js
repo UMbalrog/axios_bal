@@ -1,4 +1,4 @@
-import request from "./request.js";
+import { request, setConfig } from "./request.js";
 import {
   warn,
   isDef,
@@ -9,7 +9,10 @@ import {
   ArrayToConfig
 } from './util.js';
 
-const AJAX = function(list) {
+const AJAX = function(list, config) {
+  if(config){
+    setConfig(config);
+  }
   const obj = {};
   // 接口列表处理
   if(isUndef(list) || !Array.isArray(list)) {
@@ -44,6 +47,6 @@ const AJAX = function(list) {
 AJAX.install = (Vue) => { 
   // Vue.prototype.$axios = axios;
 };
-AJAX.version = '1.0.1';
+AJAX.version = '1.0.2';
 
 export default AJAX
